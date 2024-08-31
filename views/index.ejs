@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>留言板系統</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h3 {
+        margin-top: 20px;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        margin: 5px 0;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      hr {
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>輸入留言</h3>
+    <form action="/" method="post">
+      <p>稱呼</p>
+      <input type="text" name="name" />
+      <p>留言</p>
+      <input type="text" name="msg" />
+      <div>
+        <button>送出留言</button>
+      </div>
+    </form>
+
+    <h3>留言列表</h3>
+    <% if (data.length === 0) { %>
+      <p>目前沒有留言。</p>
+    <% } else { %>
+      <% for (let i = 0; i < data.length; i++) { %>
+        <h6>稱呼：<span><%= data[i].name %></span></h6>
+        <h6>留言：<span><%= data[i].msg %></span></h6>
+        <hr />
+      <% } %>
+    <% } %>
+  </body>
+</html>
