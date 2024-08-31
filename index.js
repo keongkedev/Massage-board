@@ -41,13 +41,16 @@ app.post("/", async (req, res) => {
   const { name, msg } = req.body;
   try {
     if (name && msg) {
+      const date = new Date();
+
       await collection.insertOne({
         name,
         msg,
+        date,
       });
     }
 
-    const result = await collection.find({}).toArray();
+    const result = await collection.find({}).sort({ date: 1 }).toArray();
     res.render("index.ejs", { data: result });
   } catch (err) {
     console.log("留言失敗", err);
